@@ -24,7 +24,10 @@ var users = require('./routes/users');
 var app = express();
 
 // passport
-passport.use('test-login', new LocalStrategy(function(usernameInput, passwordInput, done){
+passport.use('test-login', new LocalStrategy({
+    usernameField: 'username',
+    passwordField: 'password'
+},function(usernameInput, passwordInput, done){
 
   // ini cari user ke database
   modelUser.findOne({ username: usernameInput }, function(err, data){
